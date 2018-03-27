@@ -1,0 +1,9 @@
+div(class="container-#{image}")
+	link(rel="import", href="/jquery")
+	img(src="/static/images/#{image}.png")
+	p I Thread.sleept #{sleep} ms!
+	hr
+
+	script.
+		console.log("#{image} loaded.")
+		$(document.currentScript.ownerDocument).find('.container-#{image}').appendTo('.#{image}')

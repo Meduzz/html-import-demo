@@ -1,0 +1,33 @@
+!!!
+html
+	head
+		title Demo
+		link(rel="import", href="/widget1", async)
+		link(rel="import", href="/widget2", async)
+		link(rel="import", href="/widget3", async)
+	body
+		h1 Html imports
+		.widget1
+			h3 Widget 1
+
+		.widget2
+			h3 Widget 2
+
+		.widget3
+			h3 Widget 3
+
+		script.
+			(function() {
+			  if ('registerElement' in document
+				  && 'import' in document.createElement('link')
+				  && 'content' in document.createElement('template')) {
+				// platform is good!
+				document.querySelectorAll("link[rel='import']")
+					.forEach(i => i.import)
+			  } else {
+				// polyfill the platform!
+				var e = document.createElement('script');
+				e.src = '/static/js/webcomponents-lite.js';
+				document.body.appendChild(e);
+			  }
+			})();
